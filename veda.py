@@ -2,7 +2,7 @@ import streamlit as st
 from backend.gemini_api import query_gemini
 import time
 
-
+# Page Configuration
 st.set_page_config(page_title="AtmaVeda - Gateway to Wisdom", page_icon="🕉️", layout="wide")
 
 def load_css(file_name):
