@@ -94,38 +94,56 @@ p, ol, ul, dl {
     transform: rotate(360deg); /* Smooth rotation for mysticism */
 }
 
-/* Tabs Container */
-.stTabs st-emotion-cache-0 esjhkag0 {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    padding: 1rem 0;
+/* Tab Styles */
+.stTabs [data-baseweb="tab"] {
+    font-weight: bold;
+    transition: transform 0.3s ease, color 0.3s ease, filter 0.3s ease; /* Smooth hover transition */
+    padding: 20px 30px;  /* Increased padding for larger tabs */
+    border-radius: 25px;
+    text-align: center;
+    margin: 10px;
+    font-size: 20px; /* Default font size */
 }
 
-/* Individual Tab Style */
-.stTab {
-    padding: 1rem 2rem;
-    background-color: #503321; /* Deep spiritual purple */
-    color: #FFD700;
-    border: 2px solid #FFD700;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+/* Hover effect for tabs */
+.stTabs [data-baseweb="tab"]:hover {
+    transform: translateY(-5px) scale(1.5);  /* Move up and scale slightly */
+    color: #ff8000;  /* Change text color to cyan on hover */
+    filter: brightness(1.2) drop-shadow(0 0 15px rgba(242, 234, 4, 0.7)); /* Brightness increase with cyan glowing effect */
 }
 
-.stTab:hover {
-    background-color: #FFD700;
-    color: #4e2718;
-    transform: scale(1.1);
+/* Responsive Design */
+@media screen and (max-width: 2000px) {
+    .stTabs [data-baseweb="tab"] {
+        font-size: 36px;  /* Increase font size for larger screens */
+        padding: 20px 30px;  /* Increased padding for larger tabs */
+        width: 100%; /* Make tabs and radios take full width */
+    }
 }
 
-/* Active Tab Style */
-.stTabActive {
-    background-color: #FFD700;
-    color: #4e2718;
+@media screen and (max-width: 768px) {
+    .stTabs [data-baseweb="tab"] {
+        font-size: 28px;  /* Adjust font size for medium screens */
+        padding: 15px 25px;  /* Increased padding for medium tabs */
+    }
 }
 
-/* Smooth Animation for Radio Buttons */
+@media screen and (max-width: 480px) {
+    .stTabs [data-baseweb="tab"] {
+        font-size: 18px;  /* Adjust font size for smaller screens */
+        padding: 10px 20px;  /* Increased padding for small tabs */
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .stTabs [data-baseweb="tab"] {
+        font-size: 12px;  /* Adjust font size for smaller screens */
+        padding: 2px 2px;  /* Increased padding for small tabs */
+    }
+}
+
+
+Smooth Animation for Radio Buttons
 .stRadio > div {
     display: flex;
     flex-wrap: wrap;

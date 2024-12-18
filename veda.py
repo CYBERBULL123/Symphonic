@@ -210,26 +210,27 @@ if st.session_state.current_page == "landing":
 # Main Content (Knowledge Base & VedaGPT)
 elif st.session_state.current_page == "main":
 
-    # Language selection section
-    st.markdown("#### 🌐 Language Preferences")
-    language_code = st.radio(
-        "Choose your preferred language for responses:",
-        options=["English", "Hindi"],
-        index=0,
-        horizontal=True,
-        format_func=lambda lang: "English (Default)" if lang == "English" else "Hindi (हिंदी)",
-        label_visibility="collapsed"  # Hides the label
-    )
+    # # Language selection section
+    # st.markdown("#### 🌐 Language Preferences")
+    # language_code = st.radio(
+    #     "Choose your preferred language for responses:",
+    #     options=["English", "Hindi"],
+    #     index=0,
+    #     horizontal=True,
+    #     format_func=lambda lang: "English (Default)" if lang == "English" else "Hindi (हिंदी)",
+    #     label_visibility="collapsed"  # Hides the label
+    # )
 
-    # Map language selection to a language code
-    language_code = "hi" if language_code == "Hindi" else "en"
+    # # Map language selection to a language code
+    # language_code = "hi" if language_code == "Hindi" else "en"
 
-    # Display a message based on the selected language
-    st.info(f"🌟 Responses will be provided in **{'Hindi' if language_code == 'hi' else 'English'}**.")
+    # # Display a message based on the selected language
+    # st.info(f"🌟 Responses will be provided in **{'Hindi' if language_code == 'hi' else 'English'}**.")
 
-
+    st.title("Atmaveda 🔱")
+    st.caption("Embark on a journey of self-discovery with AtmaVeda – where the eternal meets the now.")
     # Tabs for navigation
-    tab1, tab2, tab3 = st.tabs(["📖 VedBase", "🧐 VedaGPT", "Indian History 🔱"])
+    tab1, tab2, tab3 = st.tabs(["📖 VedBase", "🛕 VedaGPT", "Indian History 🔱"])
 
     # Tab 1: Knowledge Base
     with tab1:
@@ -275,8 +276,8 @@ elif st.session_state.current_page == "main":
 
                         context = f"{category_info['description']}\n"
                         mandal_description = selected_mandal.split(":")[1].strip()  # Get mandal description
-                        prompt = f"Explain the spiritual and practical wisdom of the Mandal selected: {mandal_description}, focusing on its significance in Sanatan Dharma."
-                        response = query_gemini(context, prompt, language_code)
+                        prompt = f"Explain the spiritual and practical wisdom of the Mandal selected: {mandal_description}, focusing on its significance in Sanatan Dharma. use language in {language_code}"
+                        response = query_gemini(context, prompt)
                         
                         if response:
                             st.success(f"### Insights on {selected_mandal}:")
@@ -293,8 +294,8 @@ elif st.session_state.current_page == "main":
                             progress.progress(i + 1)
 
                         context = f"{category_info['description']}\n"
-                        prompt = f"Explain the spiritual and practical wisdom of {selected_example} in detail, focusing on its significance in Sanatan Dharma."
-                        response = query_gemini(context, prompt, language_code)
+                        prompt = f"Explain the spiritual and practical wisdom of {selected_example} in detail, focusing on its significance in Sanatan Dharma.use language in {language_code}"
+                        response = query_gemini(context, prompt)
                         
                         if response:
                             st.success(f"### Insights on {selected_example}:")
@@ -333,7 +334,7 @@ elif st.session_state.current_page == "main":
                     )
                     
                     # Simulate querying the AI model
-                    response = query_gemini(context, user_question, language_code)
+                    response = query_gemini(context, user_question)
                     
                     # Display Response
                     if response:
@@ -964,7 +965,7 @@ elif st.session_state.current_page == "main":
                         "Incorporate references to India's ancient texts, spiritual philosophies, historical events, and cultural significance. "
                         "Present your answers in a professional tone, emphasizing clarity, context, and relevance to the query."
                     )
-                    response = query_gemini(context, search_query, language_code)
+                    response = query_gemini(context, search_query)
                     if response:
                         st.write("### 📚 **Search Results:**")
                         st.markdown(f"> {response}")
@@ -978,9 +979,9 @@ elif st.session_state.current_page == "main":
 st.divider()
 with st.container():
     st.markdown("""
-        <div style="text-align: center; padding: 20px; color: #555;">
-            <p style="font-size: 14px; font-weight: bold;">Developed with Passion and Precision</p>
-            <p style="font-size: 12px;">Crafted by Aditya Pandey | Building the Future of AI & Spiritual Wisdom 🔱</p>
-            <p style="font-size: 10px; color: #777;">Innovating with technology, rooted in tradition.</p>
+        <div style="text-align: center; padding: 18px; color: #555;">
+            <p style="font-size: 18px; font-weight: bold;">Developed with Passion and Precision</p>
+            <p style="font-size: 14px;">Crafted by Aditya Pandey | Building the Future of AI & Spiritual Wisdom 🔱</p>
+            <p style="font-size: 12px; color: #777;">Innovating with technology, rooted in tradition.</p>
         </div>
     """, unsafe_allow_html=True)
