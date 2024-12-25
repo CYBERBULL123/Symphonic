@@ -75,10 +75,10 @@ language = st.radio(
 mode = st.selectbox(
     "✍️ **Response Format**", 
     [ 
-        "Prose 🖋️ (गद्य)",
-        "Poetry 🎼(कविता)", 
-        "Narrative 📖(कथानक)", 
-        "Philosophical 🧘‍♂️(दार्शनिक)"
+        "Prose 🖋️",
+        "Poetry 🎼", 
+        "Narrative 📖", 
+        "Philosophical 🧘‍♂️"
     ]
 )
 
