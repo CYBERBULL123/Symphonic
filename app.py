@@ -125,8 +125,7 @@ if st.button("🎤 **Generate Response**"):
         # Display the Response
         if response:
             st.success("### 🎶 **Your Symphonic Creation**:")
-            response_title = (f"**{mode} in {language} ({tone}):**")
-            st.markdown(response_title)
+            st.markdown(f"**{mode} in {language} ({tone}):**")
             st.write(response)
 
             # Clean the response text
