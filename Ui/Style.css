@@ -68,3 +68,29 @@ body {
     font-size: 18px;
     color: #2E86AB;
 }
+
+
+/* Audio Player Styles */
+.stAudio {
+    display: block;
+    margin: 20px auto;
+    width: 80%; /* Adjust width */
+    border-radius: 12px;
+    padding: 5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.stAudio::-webkit-media-controls-panel {
+    background-color: #2E86AB; /* Custom background for controls */
+    border-radius: 12px;
+}
+
+.stAudio::-webkit-media-controls-play-button,
+.stAudio::-webkit-media-controls-volume-slider {
+    filter: hue-rotate(90deg); /* Adjust colors */
+}
+
+.stAudio:hover {
+    transform: scale(1.02); /* Subtle hover effect */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+}

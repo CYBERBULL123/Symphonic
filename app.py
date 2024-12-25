@@ -12,11 +12,16 @@ st.set_page_config(
     layout="wide"  # Centered layout for a more professional feel
 )
 
+# Initialize Session State for Responses and Audio
+if 'responses' not in st.session_state:
+    st.session_state['responses'] = []
+if 'audio_files' not in st.session_state:
+    st.session_state['audio_files'] = []
+
 # Load custom CSS
 def load_css(file_name):
     with open(file_name) as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
 
 # Load the CSS file
 load_css("Ui/Style.css")
@@ -24,9 +29,8 @@ load_css("Ui/Style.css")
 # Remove special characters and improve formatting
 def clean_text(text):
     # Retain alphabetic characters (both English and Hindi), numbers, punctuation, and spaces
-    clean_text = re.sub(r'[^a-zA-Z0-9.,!?;:()\'\" \n\u0900-\u097F]', '', text)
+    clean_text = re.sub(r'[^a-zA-Z0-9.,!?;:()\'" \n\u0900-\u097F]', '', text)
     return re.sub(r'\s+', ' ', clean_text).strip()
-
 
 # Header Section
 st.markdown(
@@ -70,7 +74,12 @@ language = st.radio(
 
 mode = st.selectbox(
     "✍️ **Response Format**", 
-    ["Prose 🖋️", "Poetry 🎼", "Narrative 📖", "Philosophical 🧘‍♂️"]
+    [ 
+        "Prose 🖋️ (गद्य)",
+        "Poetry 🎼(कविता)", 
+        "Narrative 📖(कथानक)", 
+        "Philosophical 🧘‍♂️(दार्शनिक)"
+    ]
 )
 
 tone = st.selectbox(
@@ -91,11 +100,9 @@ tone = st.selectbox(
     ]
 )
 
-
 # User Input Query
 st.markdown("### 🔍 **Enter Your Query**")
 query = st.text_input("💡 Type your topic, theme, or idea (e.g., 'love', 'nature')")
-
 
 # Generate Response Button
 if st.button("🎤 **Generate Response**"):
@@ -118,7 +125,8 @@ if st.button("🎤 **Generate Response**"):
         # Display the Response
         if response:
             st.success("### 🎶 **Your Symphonic Creation**:")
-            st.markdown(f"**{mode} in {language} ({tone}):**")
+            response_title = (f"**{mode} in {language} ({tone}):**")
+            st.markdown(response_title)
             st.write(response)
 
             # Clean the response text
@@ -131,6 +139,13 @@ if st.button("🎤 **Generate Response**"):
                     tts = gTTS(clean_response, lang='en', tld='co.in')
                     audio_file = BytesIO()
                     tts.write_to_fp(audio_file)
+                    audio_file.seek(0)
+
+                    # Store response and audio in session state
+                    st.session_state['responses'].append(response)
+                    st.session_state['audio_files'].append(audio_file)
+
+                    # Play the generated audio
                     st.audio(audio_file, format='audio/mp3')
                 except Exception as e:
                     st.error(f"⚠️ Error generating audio: {e}")
@@ -141,6 +156,16 @@ if st.button("🎤 **Generate Response**"):
     else:
         st.warning("⚠️ Please enter a query or select a famous work.")
 
+# Display Previous Responses
+st.markdown("### 📂 **Previous Responses**")
+if st.session_state['responses']:
+    for idx, (response, audio) in enumerate(zip(st.session_state['responses'], st.session_state['audio_files']), start=1):
+        with st.expander(f"Response {idx}"):
+            st.markdown(f"**Response {idx}:**")
+            st.write(response)
+            st.audio(audio, format='audio/mp3')
+else:
+    st.info("ℹ️ No previous responses to display.")
 
 # Footer Section
 st.markdown(
