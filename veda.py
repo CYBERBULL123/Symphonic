@@ -277,7 +277,7 @@ elif st.session_state.current_page == "main":
                         context = f"{category_info['description']}\n"
                         mandal_description = selected_mandal.split(":")[1].strip()  # Get mandal description
                         prompt = f"Explain the spiritual and practical wisdom of the Mandal selected: {mandal_description}, focusing on its significance in Sanatan Dharma. use language in {language_code}"
-                        response = query_gemini(context, prompt)
+                        response = query_gemini(context, prompt, language_code)
                         
                         if response:
                             st.success(f"### Insights on {selected_mandal}:")
@@ -295,7 +295,7 @@ elif st.session_state.current_page == "main":
 
                         context = f"{category_info['description']}\n"
                         prompt = f"Explain the spiritual and practical wisdom of {selected_example} in detail, focusing on its significance in Sanatan Dharma.use language in {language_code}"
-                        response = query_gemini(context, prompt)
+                        response = query_gemini(context, prompt, language_code)
                         
                         if response:
                             st.success(f"### Insights on {selected_example}:")
@@ -334,7 +334,7 @@ elif st.session_state.current_page == "main":
                     )
                     
                     # Simulate querying the AI model
-                    response = query_gemini(context, user_question)
+                    response = query_gemini(context, user_question, language_code)
                     
                     # Display Response
                     if response:
@@ -965,7 +965,7 @@ elif st.session_state.current_page == "main":
                         "Incorporate references to India's ancient texts, spiritual philosophies, historical events, and cultural significance. "
                         "Present your answers in a professional tone, emphasizing clarity, context, and relevance to the query."
                     )
-                    response = query_gemini(context, search_query)
+                    response = query_gemini(context, search_query, language_code)
                     if response:
                         st.write("### 📚 **Search Results:**")
                         st.markdown(f"> {response}")
