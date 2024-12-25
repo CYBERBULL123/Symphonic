@@ -211,21 +211,21 @@ if st.session_state.current_page == "landing":
 elif st.session_state.current_page == "main":
 
     # # Language selection section
-    # st.markdown("#### 🌐 Language Preferences")
-    # language_code = st.radio(
-    #     "Choose your preferred language for responses:",
-    #     options=["English", "Hindi"],
-    #     index=0,
-    #     horizontal=True,
-    #     format_func=lambda lang: "English (Default)" if lang == "English" else "Hindi (हिंदी)",
-    #     label_visibility="collapsed"  # Hides the label
-    # )
+    st.markdown("#### 🌐 Language Preferences")
+    language_code = st.radio(
+        "Choose your preferred language for responses:",
+        options=["English", "Hindi"],
+        index=0,
+        horizontal=True,
+        format_func=lambda lang: "English (Default)" if lang == "English" else "Hindi (हिंदी)",
+        label_visibility="collapsed"  # Hides the label
+    )
 
-    # # Map language selection to a language code
-    # language_code = "hi" if language_code == "Hindi" else "en"
+    # Map language selection to a language code
+    language_code = "hi" if language_code == "Hindi" else "en"
 
-    # # Display a message based on the selected language
-    # st.info(f"🌟 Responses will be provided in **{'Hindi' if language_code == 'hi' else 'English'}**.")
+    # Display a message based on the selected language
+    st.info(f"🌟 Responses will be provided in **{'Hindi' if language_code == 'hi' else 'English'}**.")
 
     st.title("Atmaveda 🔱")
     st.caption("Embark on a journey of self-discovery with AtmaVeda – where the eternal meets the now.")
