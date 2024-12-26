@@ -1,5 +1,5 @@
 import streamlit as st
-from backend.gemini_api import query_gemini
+from backend.gemini_api import query_gemini , query_gemini_api
 from backend.langchain import generate_prompt
 from gtts import gTTS
 import re
@@ -117,7 +117,7 @@ if st.button("🎤 **Generate Response**"):
                 tone=tone.split()[0].lower()  # Extracting plain text tone
             )
             # Query the Gemini API
-            response = query_gemini(
+            response = query_gemini_api(
                 context=f"You are a literature and poetry expert, responding in {language}.", 
                 prompt=prompt
             )
